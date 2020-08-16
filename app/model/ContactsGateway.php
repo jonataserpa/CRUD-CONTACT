@@ -13,7 +13,6 @@ class ContactsGateway extends Database
 		$pdo = Database::connect($order);
 		$sql = $pdo->prepare("SELECT * FROM contacts WHERE IFNULL(c_fdeletado, 0) =0 ORDER BY $order ");
 		$sql->execute();
-		//$contacts = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 		$contacts = array();
 		while ($obj = $sql->fetch(PDO::FETCH_OBJ))
@@ -29,8 +28,6 @@ class ContactsGateway extends Database
 		$sql = $pdo->prepare("SELECT * FROM phone WHERE IFNULL(p_fdeletado, 0) =0 AND p_conctacts_id = ?");
 		$sql->bindValue(1, $id);
 		$sql->execute();
-		/* $result = $sql->fetch(PDO::FETCH_OBJ);
-		return json_encode($result); */
 
 		$contacts = array();
 		while ($obj = $sql->fetch(PDO::FETCH_OBJ))
