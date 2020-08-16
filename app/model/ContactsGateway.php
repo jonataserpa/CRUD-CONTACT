@@ -11,7 +11,7 @@ class ContactsGateway extends Database
 			$order = 'name';
 		}
 		$pdo = Database::connect($order);
-		$sql = $pdo->prepare("SELECT * FROM contacts WHERE IFNULL(c_fdeletado, 0) =0");
+		$sql = $pdo->prepare("SELECT * FROM contacts WHERE IFNULL(c_fdeletado, 0) =0 ORDER BY $order ");
 		$sql->execute();
 		//$contacts = $sql->fetchAll(PDO::FETCH_ASSOC);
 
